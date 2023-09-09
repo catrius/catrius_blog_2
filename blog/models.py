@@ -18,6 +18,7 @@ class Post(models.Model):
     title = models.CharField(max_length = 300)
     slug = models.SlugField(unique = True)
     content = RichTextField()
+    thumbnail = models.ImageField(upload_to = 'thumbnails/')
     excerpt = models.TextField(blank = True)
     category = models.ForeignKey(Category, on_delete = models.CASCADE)
     created_at = models.DateTimeField(auto_now_add = True)
