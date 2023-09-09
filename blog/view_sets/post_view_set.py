@@ -27,3 +27,10 @@ class PostViewSet(viewsets.ModelViewSet):
     queryset = Post.objects.select_related('category')
     serializer_class = PostSerializer
     lookup_field = 'slug'
+
+    def get_queryset(self):
+        queryset = Post.objects.select_related('category')
+        category = self.request.query_params.get('category')
+        if category is not None:
+            queryset = queryset.filter(category__slug = category)
+        return queryset
