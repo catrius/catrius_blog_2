@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "catrius-blog-2"
+version = "0.1.0"
+description = ""
+authors = ["Thang Pham <catrius@linecorp.com>"]
+readme = "README.md"
+packages = [{include = "catrius_blog_2"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+django = "^4.2.4"
+django-ckeditor = "^6.7.0"
+django-extensions = "^3.2.3"
+ipython = "^8.15.0"
+djangorestframework = "^3.14.0"
+markdown = "^3.4.4"
+django-filter = "^23.2"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
