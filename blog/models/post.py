@@ -10,7 +10,7 @@ class Post(models.Model):
     content = RichTextField()
     thumbnail = models.ImageField(upload_to = 'thumbnails/')
     excerpt = models.TextField(blank = True)
-    category = models.ForeignKey(Category, on_delete = models.CASCADE)
+    category = models.ForeignKey(Category, on_delete = models.CASCADE, related_name = 'posts')
     created_at = models.DateTimeField(auto_now_add = True)
     updated_at = models.DateTimeField(auto_now = True)
 
