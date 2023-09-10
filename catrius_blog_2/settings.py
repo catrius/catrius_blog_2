@@ -19,6 +19,7 @@ env = environ.Env(
     AWS_ACCESS_KEY_ID = (str, ''),
     AWS_SECRET_ACCESS_KEY = (str, ''),
     AWS_S3_REGION_NAME = (str, ''),
+    CSRF_TRUSTED_ORIGINS = (list, []),
 )
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -187,3 +188,7 @@ REST_FRAMEWORK = {
 # django-cors-headers
 # https://pypi.org/project/django-cors-headers/
 CORS_ALLOWED_ORIGINS = env.list('CORS_ALLOWED_ORIGINS')
+
+# CSRF_TRUSTED_ORIGINS
+# https://docs.djangoproject.com/en/4.2/ref/settings/#csrf-trusted-origins
+CSRF_TRUSTED_ORIGINS = env.list('CSRF_TRUSTED_ORIGINS')
