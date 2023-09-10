@@ -159,7 +159,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Django CKEditor
 # https://github.com/django-ckeditor/django-ckeditor
-CKEDITOR_BASEPATH = '/static/ckeditor/ckeditor/'
+CKEDITOR_BASEPATH = env('CKEDITOR_BASEPATH')
 CKEDITOR_UPLOAD_PATH = 'uploads/'
 CKEDITOR_CONFIGS = {
     'default': {
