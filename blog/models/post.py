@@ -1,4 +1,4 @@
-from ckeditor.fields import RichTextField
+from ckeditor_uploader.fields import RichTextUploadingField
 from django.db import models
 
 from blog.models import Category
@@ -7,7 +7,7 @@ from blog.models import Category
 class Post(models.Model):
     title = models.CharField(max_length = 300)
     slug = models.SlugField(unique = True)
-    content = RichTextField()
+    content = RichTextUploadingField()
     thumbnail = models.ImageField(upload_to = 'thumbnails/')
     excerpt = models.TextField(blank = True)
     category = models.ForeignKey(Category, on_delete = models.CASCADE, related_name = 'posts')
