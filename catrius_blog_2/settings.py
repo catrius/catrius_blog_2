@@ -20,6 +20,8 @@ env = environ.Env(
     AWS_SECRET_ACCESS_KEY = (str, ''),
     AWS_S3_REGION_NAME = (str, ''),
     CSRF_TRUSTED_ORIGINS = (list, []),
+    STATIC_ROOT = (str, None),
+    MEDIA_ROOT = (str, None),
 )
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -137,7 +139,7 @@ AWS_S3_REGION_NAME = env('AWS_S3_REGION_NAME')
 
 STORAGES = {
     'default': {
-        'BACKEND': 'django.core.files.storage.FileSystemStorage',
+        'BACKEND': env('STORAGES_DEFAULT'),
     },
     'staticfiles': {
         'BACKEND': env('STORAGES_STATICFILES'),
@@ -147,9 +149,10 @@ STORAGES = {
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = env('STATIC_URL')
+MEDIA_URL = env('MEDIA_URL')
+
 STATIC_ROOT = 'static'
-MEDIA_URL = 'media/'
 MEDIA_ROOT = 'media'
 
 # Default primary key field type
