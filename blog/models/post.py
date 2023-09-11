@@ -18,5 +18,5 @@ class Post(models.Model):
         return self.title
 
     class Meta:
-        ordering = ['created_at']
-        get_latest_by = 'created_at'
+        ordering = ['-created_at']
+        get_latest_by = '-created_at'
