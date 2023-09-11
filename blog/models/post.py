@@ -13,6 +13,7 @@ class Post(models.Model):
     category = models.ForeignKey(Category, on_delete = models.CASCADE, related_name = 'posts')
     created_at = models.DateTimeField(auto_now_add = True)
     updated_at = models.DateTimeField(auto_now = True)
+    highlight = models.BooleanField(default = False)
 
     def __str__(self):
         return self.title
