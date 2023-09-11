@@ -24,6 +24,7 @@ class PostAdmin(admin.ModelAdmin):
         'title',
         'excerpt',
         'category',
+        'highlight',
         'created_at',
         'updated_at',
     ]
