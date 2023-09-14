@@ -31,6 +31,10 @@ class PostViewSet(viewsets.ModelViewSet):
     def get_queryset(self):
         queryset = Post.objects.select_related('category')
         category = self.request.query_params.get('category')
+        highlight = self.request.query_params.get('highlight')
+
         if category is not None:
             queryset = queryset.filter(category__slug = category)
+        elif highlight is not None and highlight == 'true':
+            queryset = queryset.filter(highlight = True)
         return queryset
