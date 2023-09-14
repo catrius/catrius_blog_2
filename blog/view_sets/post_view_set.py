@@ -1,13 +1,11 @@
 from rest_framework import serializers, viewsets
 
 from blog.models import Post
+from blog.view_sets.category_view_set import CategorySerializer
 
 
 class PostSerializer(serializers.HyperlinkedModelSerializer):
-    category = serializers.SlugRelatedField(
-        read_only = True,
-        slug_field = 'name'
-    )
+    category = CategorySerializer()
 
     class Meta:
         model = Post
