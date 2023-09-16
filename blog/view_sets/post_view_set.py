@@ -2,12 +2,10 @@ from rest_framework import serializers, viewsets
 
 from blog.models import Post
 from blog.view_sets.category_view_set import CategorySerializer
-from blog.view_sets.comment_view_set import CommentSerializer
 
 
 class PostSerializer(serializers.ModelSerializer):
     category = CategorySerializer()
-    comments = CommentSerializer(many = True)
 
     class Meta:
         model = Post
@@ -21,17 +19,16 @@ class PostSerializer(serializers.ModelSerializer):
             'category',
             'created_at',
             'updated_at',
-            'comments',
         ]
 
 
 class PostViewSet(viewsets.ReadOnlyModelViewSet):
-    queryset = Post.objects.select_related('category').prefetch_related('post')
+    queryset = Post.objects.select_related('category')
     serializer_class = PostSerializer
     lookup_field = 'slug'
 
     def get_queryset(self):
-        queryset = Post.objects.select_related('category')
+        queryset = self.queryset
         category = self.request.query_params.get('category')
         highlight = self.request.query_params.get('highlight')
 

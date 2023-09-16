@@ -19,6 +19,14 @@ class CommentSerializer(serializers.ModelSerializer):
 
 
 @permission_classes([AllowAny])
-class CommentViewSet(viewsets.GenericViewSet, mixins.CreateModelMixin):
-    queryset = Comment.objects.all()
+class CommentViewSet(viewsets.GenericViewSet, mixins.CreateModelMixin, mixins.ListModelMixin):
+    queryset = Comment.objects.select_related('post')
     serializer_class = CommentSerializer
+
+    def get_queryset(self):
+        queryset = self.queryset
+        post = self.request.query_params.get('post')
+
+        if post is not None:
+            queryset = queryset.filter(post__slug = post)
+        return queryset
