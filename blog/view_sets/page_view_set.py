@@ -3,7 +3,7 @@ from rest_framework import serializers, viewsets
 from blog.models import Page
 
 
-class PageSerializer(serializers.HyperlinkedModelSerializer):
+class PageSerializer(serializers.ModelSerializer):
     class Meta:
         model = Page
         fields = [
@@ -15,7 +15,7 @@ class PageSerializer(serializers.HyperlinkedModelSerializer):
         ]
 
 
-class PageViewSet(viewsets.ModelViewSet):
+class PageViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Page.objects.all()
     serializer_class = PageSerializer
     lookup_field = 'slug'

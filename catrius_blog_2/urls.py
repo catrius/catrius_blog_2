@@ -33,8 +33,8 @@ paths = [
 ]
 
 if settings.DEBUG:
-    static_paths = static(settings.STATIC_URL, document_root = settings.STATIC_ROOT)
-    media_paths = static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
+    static_paths = static(settings.STATIC_ROOT, document_root = settings.STATIC_ROOT)
+    media_paths = static(settings.MEDIA_ROOT, document_root = settings.MEDIA_ROOT)
 
     urlpatterns = paths + static_paths + media_paths
 else:

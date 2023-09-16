@@ -3,7 +3,7 @@ from rest_framework import serializers, viewsets
 from blog.models import Category
 
 
-class CategorySerializer(serializers.HyperlinkedModelSerializer):
+class CategorySerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Category
@@ -14,7 +14,7 @@ class CategorySerializer(serializers.HyperlinkedModelSerializer):
         lookup_field = 'slug'
 
 
-class CategoryViewSet(viewsets.ModelViewSet):
+class CategoryViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
     lookup_field = 'slug'

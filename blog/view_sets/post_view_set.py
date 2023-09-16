@@ -2,14 +2,17 @@ from rest_framework import serializers, viewsets
 
 from blog.models import Post
 from blog.view_sets.category_view_set import CategorySerializer
+from blog.view_sets.comment_view_set import CommentSerializer
 
 
-class PostSerializer(serializers.HyperlinkedModelSerializer):
+class PostSerializer(serializers.ModelSerializer):
     category = CategorySerializer()
+    comments = CommentSerializer(many = True)
 
     class Meta:
         model = Post
         fields = [
+            'id',
             'title',
             'slug',
             'thumbnail',
@@ -18,11 +21,12 @@ class PostSerializer(serializers.HyperlinkedModelSerializer):
             'category',
             'created_at',
             'updated_at',
+            'comments',
         ]
 
 
-class PostViewSet(viewsets.ModelViewSet):
-    queryset = Post.objects.select_related('category')
+class PostViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = Post.objects.select_related('category').prefetch_related('post')
     serializer_class = PostSerializer
     lookup_field = 'slug'
 

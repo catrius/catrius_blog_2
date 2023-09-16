@@ -1,8 +1,6 @@
 from ckeditor_uploader.fields import RichTextUploadingField
 from django.db import models
 
-from blog.models import Category
-
 
 class Post(models.Model):
     title = models.CharField(max_length = 300)
@@ -10,7 +8,7 @@ class Post(models.Model):
     content = RichTextUploadingField()
     thumbnail = models.ImageField(upload_to = 'thumbnails/')
     excerpt = models.TextField(blank = True)
-    category = models.ForeignKey(Category, on_delete = models.CASCADE, related_name = 'posts')
+    category = models.ForeignKey('Category', on_delete = models.CASCADE, related_name = 'posts')
     created_at = models.DateTimeField(auto_now_add = True)
     updated_at = models.DateTimeField(auto_now = True)
     highlight = models.BooleanField(default = False)
