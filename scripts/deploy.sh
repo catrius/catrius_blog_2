@@ -7,6 +7,7 @@ remote_directory="/home/ec2-user/catrius_blog_2"
 commands=()
 commands+=("cd '$remote_directory'")
 commands+=("git pull")
+commands+=("poetry install")
 commands+=("poetry run python manage.py migrate")
 commands+=("sudo systemctl restart gunicorn")
 commands+=("echo done")
