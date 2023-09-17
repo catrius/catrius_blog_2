@@ -30,6 +30,7 @@ paths = [
     path('ckeditor/', include('ckeditor_uploader.urls')),
     path('api-auth/', include('rest_framework.urls', namespace = 'rest_framework')),
     path('', include(blog_router.urls)),
+    path('__debug__/', include('debug_toolbar.urls')),
 ]
 
 if settings.DEBUG:

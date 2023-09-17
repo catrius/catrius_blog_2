@@ -16,6 +16,9 @@ class Post(models.Model):
     def __str__(self):
         return self.title
 
+    def comment_count(self):
+        return self.comments.count()
+
     class Meta:
         ordering = ['-created_at']
         get_latest_by = '-created_at'

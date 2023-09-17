@@ -19,11 +19,12 @@ class PostSerializer(serializers.ModelSerializer):
             'category',
             'created_at',
             'updated_at',
+            'comment_count',
         ]
 
 
 class PostViewSet(viewsets.ReadOnlyModelViewSet):
-    queryset = Post.objects.select_related('category')
+    queryset = Post.objects.select_related('category').prefetch_related('comments')
     serializer_class = PostSerializer
     lookup_field = 'slug'
 
