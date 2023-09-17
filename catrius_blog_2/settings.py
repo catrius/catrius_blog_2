@@ -50,6 +50,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sitemaps',
+    'django.contrib.sites',
 
     # Installed
     'django_extensions',
@@ -204,3 +206,7 @@ CSRF_TRUSTED_ORIGINS = env.list('CSRF_TRUSTED_ORIGINS')
 INTERNAL_IPS = [
     '127.0.0.1',
 ]
+
+# Django sites framework
+# https://docs.djangoproject.com/en/4.2/ref/contrib/sites/#module-django.contrib.sites
+SITE_ID = 1
